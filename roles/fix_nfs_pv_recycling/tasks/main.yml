@@ -1,0 +1,5 @@
+- name: docker pull ose-recycler:latest
+  shell: docker pull registry.access.redhat.com/openshift3/ose-recycler:latest
+
+- name: docker tag
+  shell: docker tag registry.access.redhat.com/openshift3/ose-recycler:latest registry.access.redhat.com/openshift3/ose-recycler:v3.9.30
