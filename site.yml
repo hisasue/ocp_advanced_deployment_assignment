@@ -1,0 +1,6 @@
+---
+- name: create pvs
+  hosts: support1.56b3.internal
+  become: true
+  roles:
+    - pv

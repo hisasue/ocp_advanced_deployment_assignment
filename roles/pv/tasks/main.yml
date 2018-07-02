@@ -1,0 +1,13 @@
+#- name: create dirs
+#  file:
+#    dest: "/srv/nfs/user-vols/pv{{ item }}"
+#    state: directory
+#  with_sequence: start=1 end=200 stride=1
+
+- name: setting NFS
+  shell: |
+    echo "/srv/nfs/user-vols/pv{{ item }} *(rw,root_squash)" >> /etc/exports.d/openshift-uservols.exports
+  with_sequence: start=1 end=200 stride=1
+
+
+
