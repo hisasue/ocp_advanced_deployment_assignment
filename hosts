@@ -1,6 +1,3 @@
-[env_vars]
-guid="your GUID"
-
 [OSEv3:vars]
 
 ###########################################################################
@@ -29,10 +26,10 @@ openshift_master_api_port=443
 openshift_master_console_port=443
 
 openshift_master_cluster_method=native
-openshift_master_cluster_hostname=loadbalancer1.{{ guid }}.internal
-#openshift_master_cluster_public_hostname=loadbalancer1.{{ guid }}.example.opentlc.com
-openshift_master_cluster_public_hostname=loadbalancer.{{ guid }}.example.opentlc.com
-openshift_master_default_subdomain=apps.{{ guid }}.example.opentlc.com
+openshift_master_cluster_hostname=loadbalancer1.56b3.internal
+#openshift_master_cluster_public_hostname=loadbalancer1.56b3.example.opentlc.com
+openshift_master_cluster_public_hostname=loadbalancer.56b3.example.opentlc.com
+openshift_master_default_subdomain=apps.56b3.example.opentlc.com
 #openshift_master_ca_certificate={'certfile': '/root/intermediate_ca.crt', 'keyfile': '/root/intermediate_ca.key'}
 openshift_master_overwrite_named_certificates=True
 
@@ -130,7 +127,7 @@ openshift_logging_storage_volume_name=logging
 openshift_logging_storage_volume_size=10Gi
 openshift_logging_storage_labels={'storage': 'logging'}
 
-# openshift_logging_kibana_hostname=kibana.apps.{{ guid }}.example.opentlc.com
+# openshift_logging_kibana_hostname=kibana.apps.56b3.example.opentlc.com
 openshift_logging_es_cluster_size=1
 
 openshift_logging_es_nodeselector={"env":"infra"}
@@ -189,42 +186,42 @@ nfs
 #glusterfs
 
 [lb]
-loadbalancer1.{{ guid }}.internal
+"loadbalancer1.56b3.internal"
 
 [masters]
-master1.{{ guid }}.internal
-master2.{{ guid }}.internal
-master3.{{ guid }}.internal
+"master1.56b3.internal"
+"master2.56b3.internal"
+"master3.56b3.internal"
 
 [etcd]
-master1.{{ guid }}.internal
-master2.{{ guid }}.internal
-master3.{{ guid }}.internal
+"master1.56b3.internal"
+"master2.56b3.internal"
+"master3.56b3.internal"
 
 [nodes]
 ## These are the masters
-master1.{{ guid }}.internal openshift_hostname=master1.{{ guid }}.internal openshift_node_labels="{'env':'master', 'cluster': '{{ guid }}'}"
-master2.{{ guid }}.internal openshift_hostname=master2.{{ guid }}.internal openshift_node_labels="{'env':'master', 'cluster': '{{ guid }}'}"
-master3.{{ guid }}.internal openshift_hostname=master3.{{ guid }}.internal openshift_node_labels="{'env':'master', 'cluster': '{{ guid }}'}"
+"master1.56b3.internal" openshift_hostname="master1.56b3.internal" openshift_node_labels="{'env':'master', 'cluster': '56b3'}"
+"master2.56b3.internal" openshift_hostname="master2.56b3.internal" openshift_node_labels="{'env':'master', 'cluster': '56b3'}"
+"master3.56b3.internal" openshift_hostname="master3.56b3.internal" openshift_node_labels="{'env':'master', 'cluster': '56b3'}"
 
 ## These are infranodes
-infranode1.{{ guid }}.internal openshift_hostname=infranode1.{{ guid }}.internal  openshift_node_labels="{'env':'infra', 'cluster': '{{ guid }}'}"
-infranode2.{{ guid }}.internal openshift_hostname=infranode2.{{ guid }}.internal  openshift_node_labels="{'env':'infra', 'cluster': '{{ guid }}'}"
+"infranode1.56b3.internal" openshift_hostname="infranode1.56b3.internal"  openshift_node_labels="{'env':'infra', 'cluster': '56b3'}"
+"infranode2.56b3.internal" openshift_hostname="infranode2.56b3.internal"  openshift_node_labels="{'env':'infra', 'cluster': '56b3'}"
 
 ## These are regular nodes
-node1.{{ guid }}.internal openshift_hostname=node1.{{ guid }}.internal  openshift_node_labels="{'env':'app', 'cluster': '{{ guid }}'}"
-node2.{{ guid }}.internal openshift_hostname=node2.{{ guid }}.internal  openshift_node_labels="{'env':'app', 'cluster': '{{ guid }}'}"
-node3.{{ guid }}.internal openshift_hostname=node3.{{ guid }}.internal  openshift_node_labels="{'env':'app', 'cluster': '{{ guid }}'}"
+"node1.56b3.internal" openshift_hostname="node1.56b3.internal"  openshift_node_labels="{'env':'app', 'cluster': '56b3'}"
+"node2.56b3.internal" openshift_hostname="node2.56b3.internal"  openshift_node_labels="{'env':'app', 'cluster': '56b3'}"
+"node3.56b3.internal" openshift_hostname="node3.56b3.internal"  openshift_node_labels="{'env':'app', 'cluster': '56b3'}"
 
 ## These are CNS nodes
-# support1.{{ guid }}.internal openshift_hostname=support1.{{ guid }}.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '{{ guid }}'}"
-# support2.{{ guid }}.internal openshift_hostname=support2.{{ guid }}.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '{{ guid }}'}"
-# support3.{{ guid }}.internal openshift_hostname=support3.{{ guid }}.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '{{ guid }}'}"
+# "support1.56b3.internal" openshift_hostname="support1.56b3.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': '56b3'}"
+# "support2.56b3.internal" openshift_hostname="support2.56b3.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': '56b3'}"
+# "support3.56b3.internal" openshift_hostname="support3.56b3.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': '56b3'}"
 
 [nfs]
-support1.{{ guid }}.internal openshift_hostname=support1.{{ guid }}.internal
+support1.56b3.internal openshift_hostname=support1.56b3.internal
 
 #[glusterfs]
-# support1.{{ guid }}.internal glusterfs_devices='[ "/dev/xvdd" ]'
-# support2.{{ guid }}.internal glusterfs_devices='[ "/dev/xvdd" ]'
-# support3.{{ guid }}.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support1.56b3.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support2.56b3.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support3.56b3.internal glusterfs_devices='[ "/dev/xvdd" ]'
