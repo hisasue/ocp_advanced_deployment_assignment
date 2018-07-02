@@ -1,24 +1,42 @@
-- name: Create Dirs
+- name: Create dir for pv files
   file:
-    dest: "/srv/nfs/user-vols/pv{{ item }}"
+    dest: "/root/pvs"
     state: directory
-  with_sequence: start=1 end=200 stride=1
 
-- name: echo /srv/nfs/user-vols/pv{{ item }} *(rw,root_squash) >> /etc/exports.d/openshift-uservols.exports
+- name: Create 5Gi PV files
+  template:
+    src: pv_5Gi.yml.j2
+    dest: "/root/pvs/{{ item }}"
+  with_sequence: start=1 end=25 stride=1
+
+- name: Create 10Gi PV files
+  template:
+    src: pv_10Gi.yml.j2
+    dest: "/root/pvs/{{ item }}"
+  with_sequence: start=26 end=50 stride=1
+
+- name: oc create pv
   shell: |
-    echo "/srv/nfs/user-vols/pv{{ item }} *(rw,root_squash)" >> /etc/exports.d/openshift-uservols.exports
-  with_sequence: start=1 end=200 stride=1
+    oc create -f /root/pvs/{{ item }}
+  with_sequence: start=1 end=50 stride=1
 
-- name: chown, chmod /srv/nfs
-  file:
-    path: /srv/nfs
-    owner: nfsnobody
-    group: nfsnobody
-    mode: 0777
-    recurse: true
 
-- name: Restart NFS Server
-  systemd:
-    state: restarted
-    name: nfs-server
-
+#- name: create pv
+#  oc:
+#    state: present
+#    token: 
+#    inline:
+#      apiVersion: v1
+#      kind: PersistentVolume
+#      metadata:
+#        name: "{{item}}"
+#      spec:
+#        capacity:
+#          storage: 5Gi
+#        accessModes:
+#        - ReadWriteOnce
+#        nfs:
+#          path: "/srv/nfs/user-vols/{{item}}"
+#          server: "support1.{{guid}}.internal"
+#        persistentVolumeReclaimPolicy: Recycle
+#  with_sequence: start=1 end=2 stride=1
