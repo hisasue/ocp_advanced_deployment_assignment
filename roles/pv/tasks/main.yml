@@ -1,13 +1,24 @@
-#- name: create dirs
-#  file:
-#    dest: "/srv/nfs/user-vols/pv{{ item }}"
-#    state: directory
-#  with_sequence: start=1 end=200 stride=1
+- name: Create Dirs
+  file:
+    dest: "/srv/nfs/user-vols/pv{{ item }}"
+    state: directory
+  with_sequence: start=1 end=200 stride=1
 
-- name: setting NFS
+- name: echo /srv/nfs/user-vols/pv{{ item }} *(rw,root_squash) >> /etc/exports.d/openshift-uservols.exports
   shell: |
     echo "/srv/nfs/user-vols/pv{{ item }} *(rw,root_squash)" >> /etc/exports.d/openshift-uservols.exports
   with_sequence: start=1 end=200 stride=1
 
+- name: chown, chmod /srv/nfs
+  file:
+    path: /srv/nfs
+    owner: nfsnobody
+    group: nfsnobody
+    mode: 0777
+    recurse: true
 
+- name: Restart NFS Server
+  systemd:
+    state: restarted
+    name: nfs-server
 
