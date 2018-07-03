@@ -1,0 +1,15 @@
+- name: install httpd-tools
+  yum:
+    state: present
+    name: httpd-tools
+
+- name: create users
+  hosts: localhost
+  shell: |
+    htpasswd -b /etc/origin/master/htpasswd "{{ item }}" r3dh4t1!
+  with_items:
+    - andrew
+    - amy
+    - brian
+    - betty
+
