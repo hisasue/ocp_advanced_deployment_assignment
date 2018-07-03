@@ -8,11 +8,11 @@ spec:
   capacity:
     storage: 10Gi
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   nfs:
     path: "/srv/nfs/user-vols/pv{{item}}"
     server: "support1.{{guid}}.internal"
-  persistentVolumeReclaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Retain
 
 
 
