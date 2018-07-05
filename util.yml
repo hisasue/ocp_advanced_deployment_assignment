@@ -1,0 +1,11 @@
+- name: util
+  hosts: masters
+  become: true
+  roles:
+     - util
+- hosts: 127.0.0.1
+  tasks:
+    - name: add cluster role to 'webadmin' clusster-admin
+      shell: |
+        oc adm policy add-cluster-role-to-user cluster-admin webadmin
+
