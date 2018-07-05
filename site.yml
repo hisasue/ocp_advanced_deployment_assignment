@@ -1,24 +1,4 @@
 ---
-#- name: create pvs
-#  hosts: nfs
-#  become: true
-#  roles:
-#    - pv-prepare
-#
-#- name: create pvs
-#  hosts: 127.0.0.1
-#  become: true
-#  roles:
-#     - pv
-#
-#- name: Fix NFS Persistent Volume Recycling
-#  hosts: nodes
-#  become: true
-#  roles:
-#    - fix_nfs_pv_recycling
-
-- name: create user
-  hosts: masters
-  become: true
-  roles:
-     - user
+- include: pv.yml
+- import_playbook: user.yml
+- import_playbook: util.yml

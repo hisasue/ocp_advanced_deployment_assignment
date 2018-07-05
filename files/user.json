@@ -1,0 +1,56 @@
+{
+    "apiVersion": "user.openshift.io/v1",
+    "groups": null,
+    "identities": [
+        "htpasswd_auth:andrew"
+    ],
+    "kind": "User",
+    "metadata": {
+        "labels": {
+            "client": "alfa"
+        },
+        "name": "andrew"
+    }
+}
+{
+    "apiVersion": "user.openshift.io/v1",
+    "groups": null,
+    "identities": [
+        "htpasswd_auth:amy"
+    ],
+    "kind": "User",
+    "metadata": {
+        "labels": {
+            "client": "alfa"
+        },
+        "name": "amy"
+    }
+}
+{
+    "apiVersion": "user.openshift.io/v1",
+    "groups": null,
+    "identities": [
+        "htpasswd_auth:brian"
+    ],
+    "kind": "User",
+    "metadata": {
+        "labels": {
+            "client": "beta"
+        },
+        "name": "brian"
+    }
+}
+{
+    "apiVersion": "user.openshift.io/v1",
+    "groups": null,
+    "identities": [
+        "htpasswd_auth:betty"
+    ],
+    "kind": "User",
+    "metadata": {
+        "labels": {
+            "client": "beta"
+        },
+        "name": "betty"
+    }
+}
