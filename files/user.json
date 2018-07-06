@@ -1,6 +1,6 @@
 {
     "apiVersion": "user.openshift.io/v1",
-    "groups": null,
+    "groups": ["alfa"],
     "identities": [
         "htpasswd_auth:andrew"
     ],
@@ -14,7 +14,7 @@
 }
 {
     "apiVersion": "user.openshift.io/v1",
-    "groups": null,
+    "groups": ["alfa"],
     "identities": [
         "htpasswd_auth:amy"
     ],
@@ -28,7 +28,7 @@
 }
 {
     "apiVersion": "user.openshift.io/v1",
-    "groups": null,
+    "groups": ["beta"],
     "identities": [
         "htpasswd_auth:brian"
     ],
@@ -42,7 +42,7 @@
 }
 {
     "apiVersion": "user.openshift.io/v1",
-    "groups": null,
+    "groups": ["beta"],
     "identities": [
         "htpasswd_auth:betty"
     ],
