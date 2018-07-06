@@ -1,4 +1,5 @@
 ---
-- include: pv.yml
+- import_playbook: auth.yml
+- import_playbook: pv.yml
 - import_playbook: user.yml
 - import_playbook: util.yml
