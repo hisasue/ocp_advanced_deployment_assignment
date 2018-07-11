@@ -6,10 +6,10 @@
 - hosts: masters
   tasks:
   - name: Setting default ProjectRequest on mater-config
-      replace:
-        path: /etc/origin/master/master-config.yaml
-        regexp: "projectRequestTemplate: ''"
-        replace: "projectRequestTemplate: 'default/project-request'"
+    replace:
+      path: /etc/origin/master/master-config.yaml
+      regexp: "projectRequestTemplate: ''"
+      replace: "projectRequestTemplate: 'default/project-request'"
   - name: restart atomic-openshift-master-api atomic-openshift-master-controllers 
     shell: |
       systemctl restart atomic-openshift-master-api atomic-openshift-master-controllers
