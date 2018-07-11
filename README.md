@@ -83,7 +83,7 @@ oc delete project smoke-test
 You can see pipeline on the web console or the Jenkins console.
 
 Web console
-<https://loadbalancer.$GUID.example.opentlc.com/>
+<https://loadbalancer.$GUID.example.opentlc.com/>
 
 ID: webadmin
 PW: r3dh4t1!
@@ -105,11 +105,11 @@ oc delete project pipeline-project
 * In this section the script:
   * Creates a project (hpa-project)
   * Sets a LimitRange
-  * Creates an HPA scaling from 1 pod minimum to 5 pod maximum up when the CPU utilization equal or greater than 80%
+  * Creates an HPA scaling from 1 pod minimum to 5 pod maximum up when the CPU utilization equal or greater than 80%
 
 You can access the app to follow the link below.
 
-<https://hello-openshift-hpa-project.apps.$GUID.example.opentlc.com/>
+<https://hello-openshift-hpa-project.apps.$GUID.example.opentlc.com/>
 
 If you need to delete the project, run the command below.
 
@@ -138,7 +138,7 @@ oc process -f files/default-user-template.yaml -p USER_NAME=<username> -p CLIENT
 * On-boarding new client can create a new client/customer as follows
 
 ```shell
-ansible -i host masters -m shell -a"htpasswd -b /etc/origin/master/htpasswd <username> <passowrd>"
+ansible -i host masters -m shell -a"htpasswd -b /etc/origin/master/htpasswd <username> <passowrd>"
 ```
 
 ```shell
