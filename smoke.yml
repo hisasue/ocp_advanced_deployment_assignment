@@ -1,0 +1,9 @@
+- name: Smoke Test
+  hosts: 127.0.0.1
+  tasks:
+    - name: create a new project
+      shell: oc new-project smoke-test
+    - name: create a smoke test app (nodejs-mongo-persistent)
+      shell: oc new-app nodejs-mongo-persistent
+
+

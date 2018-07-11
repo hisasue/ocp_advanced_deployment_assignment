@@ -2,3 +2,7 @@
 - import_playbook: auth.yml
 - import_playbook: pv.yml
 - import_playbook: user.yml
+- import_playbook: cicd.yml
+- import_playbook: hpa.yml
+- import_playbook: multitenancy.yml
+
