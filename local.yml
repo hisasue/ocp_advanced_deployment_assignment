@@ -1,0 +1,7 @@
+- hosts: 127.0.0.1
+  tasks:
+    - name: export GUID
+      shell: bash -lc 'export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc'
+    - name: make hosts file
+      shell: bash -lc 'cat files/hosts.template | sed "s/%GUID%/$GUID/g" > hosts'
+
