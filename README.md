@@ -63,7 +63,7 @@ chmod u+x do.sh
 
 You can check if the environment can be deployed a smoke test application from the following link.
 
-* URL: <nodejs-mongo-persistent-smoke-test.apps.$GUID.example.opentlc.com>
+* URL: <https://nodejs-mongo-persistent-smoke-test.apps.$GUID.example.opentlc.com>
 
 If you need to delete the project, run the command below.
 
