@@ -119,15 +119,16 @@ oc delete project hpa-project
 
 ## Multitenancy
 
-* Created users Amy, Andrew, Brian and Betty
-* Amy and Andrew labeled client=alfa
-* Brian and Betty labeld client=beta
-* The new project template has a LimitRange
-* admissionControl plugin sets specific limits per label (client)
-  * client=alfa: Project limits max 10
-  * client=beta: Project limits max 5
-  * others: Project limits max 2
-  * admins: No limits
+* In this section the script:
+  * Creates users Amy, Andrew, Brian and Betty
+  * Labels Amy and Andrew client=alfa
+  * Labels Brian and Betty client=beta
+  * Creates a new project template which has a LimitRange
+  * Sets admissionControl plugin specific limits per label (client)
+    * client=alfa: Project limits max 10
+    * client=beta: Project limits max 5
+    * others: Project limits max 2
+    * admins: No limits
 
 The new user created with template is labeled 'common' if CLIENT_NAME is not specified.
 
