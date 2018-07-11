@@ -61,13 +61,13 @@ chmod u+x do.sh
   * Metrics and Logging components run on Infranodes
   * Service Catalog, Template Service Broker, and Ansible Service Broker are all working
 
-You can check if the environment can be deployed an application by running following commands.
+You can check if the environment can be deployed a smoke test application from the following link.
+
+* URL: <nodejs-mongo-persistent-smoke-test.apps.$GUID.example.opentlc.com>
+
+If you need to delete the project, run the command below.
 
 ```shell
-oc new-project smoke-test
-oc new-app nodejs-mongo-persistent
-watch oc get pod
-oc get route
 oc delete project smoke-test
 ```
 
@@ -83,16 +83,16 @@ oc delete project smoke-test
 You can see pipeline on the web console or the Jenkins console.
 
 Web console
-<https://loadbalancer.$GUID.example.opentlc.com/>
 
-ID: webadmin
-PW: r3dh4t1!
+* URL: <https://loadbalancer.$GUID.example.opentlc.com/>
+* ID: webadmin
+* PW: r3dh4t1!
 
 Jenkins Console
-<https://jenkins-pipeline-project.apps.$GUID.example.opentlc.com/>
 
-ID: webadmin
-PW: r3dh4t1!
+* URL: <https://jenkins-pipeline-project.apps.$GUID.example.opentlc.com/>
+* ID: webadmin
+* PW: r3dh4t1!
 
 If you need to delete the project, run the command below.
 
@@ -109,7 +109,7 @@ oc delete project pipeline-project
 
 You can access the app to follow the link below.
 
-<https://hello-openshift-hpa-project.apps.$GUID.example.opentlc.com/>
+* URL: <https://hello-openshift-hpa-project.apps.$GUID.example.opentlc.com/>
 
 If you need to delete the project, run the command below.
 
@@ -135,7 +135,7 @@ The new user created with template is labeled 'common' if CLIENT_NAME is not spe
 oc process -f files/default-user-template.yaml -p USER_NAME=<username> -p CLIENT_NAME=<clientname> | oc -f -
 ```
 
-* On-boarding new client can create a new client/customer as follows
+### On-boarding new client can create a new client/customer as follows
 
 ```shell
 ansible -i host masters -m shell -a"htpasswd -b /etc/origin/master/htpasswd <username> <passowrd>"
