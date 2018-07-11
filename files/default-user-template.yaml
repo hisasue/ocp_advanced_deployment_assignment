@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: default-user
+objects:
+- apiVersion: v1
+  groups:
+  - ${CLIENT_NAME}
+  kind: User
+  metadata:
+    labels:
+      client: ${CLIENT_NAME}
+    name: ${USER_NAME}
+parameters:
+  - name: CLIENT_NAME
+    value: "common"
+    description: "Client Name to which the user belongs. Default is 'common'"
+  - name: USER_NAME

@@ -1,0 +1,24 @@
+- name: add users to htpasswd
+  hosts: masters
+  tasks:
+    - name: install httpd-tools
+      yum:
+        state: present
+        name: httpd-tools
+
+    - name: create users
+      shell: |
+        htpasswd -b /etc/origin/master/htpasswd "{{ item }}" r3dh4t1!
+      with_items:
+        - andrew
+        - amy
+        - brian
+        - betty
+
+- name: create user
+  hosts: 127.0.0.1
+  tasks:
+    - name: create user
+      shell: |
+        oc apply -f files/user.json
+
