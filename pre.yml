@@ -1,21 +1,20 @@
-- host: all
+- hosts: all
   tasks:
     - name: export GUID
-      shell: |
-        'export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc'
+      shell: bash -lc 'export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc'
 
-- host: nfs
+- hosts: nfs
   tasks:
     - name: exportfs
-      shell: |
-        'exportfs'
+      shell: bash -lc 'exportfs'
 
-- host: 127.0.0.1
+- hosts: 127.0.0.1
   tasks:
-    - name: install atomic-openshift-utils and atomic-openshift-clients
+    - name: install atomic-openshift-utils
       yum:
-        status: present
-        name: "{{ item }}"
-      with_items:
-        - atomic-openshift-utils
-        - atomic-openshift-clients
+        state: present
+        name: atomic-openshift-utils
+    - name: install atomic-openshift-clients
+      yum:
+        state: present
+        name: atomic-openshift-clients
