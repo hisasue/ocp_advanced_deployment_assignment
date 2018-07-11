@@ -16,6 +16,7 @@
     group: nfsnobody
     mode: 0777
     recurse: true
+  ignore_errors: true
 
 - name: Restart NFS Server
   systemd:
