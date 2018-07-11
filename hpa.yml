@@ -1,0 +1,14 @@
+- name: HPA
+  hosts: 127.0.0.1
+  tasks:
+    - name: create a new project
+      shell: oc new-project hpa-project
+    - name: create LimitRange for the project
+      shell: oc create -f files/limit_range.yml -n hpa-project
+    - name: create a simple app (hello-openshift)
+      shell: oc new-app openshift/hello-openshift
+    - name: create HPA min=1 max=5 cpu-percent=80
+      shell: oc autoscale dc/hello-openshift --min 1 --max 5 --cpu-percent=80
+    - name: expose svc
+      shell: oc expose svc/hello-openshift
+

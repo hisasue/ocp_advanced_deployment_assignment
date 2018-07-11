@@ -1,0 +1,10 @@
+- name: CICD Workflow
+  hosts: 127.0.0.1
+  tasks:
+    - name: create a new project
+      shell: oc new-project pipeline-project
+    - name: create Jenkins app
+      shell: oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/pipeline/samplepipeline.yaml
+    - name: run the pipeline
+      shell: oc start-build sample-pipeline
+
