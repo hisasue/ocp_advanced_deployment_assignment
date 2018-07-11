@@ -1,4 +1,4 @@
-# Advanced PaaS Administration Training Homework Doc
+# Advanced PaaS Administration Training Homework Lab
 
 ## Provisioned Homework Environment
 
