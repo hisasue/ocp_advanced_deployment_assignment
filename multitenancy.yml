@@ -1,0 +1,15 @@
+- hosts: 127.0.0.1
+  tasks:
+    - name: create project template object
+      shell: |
+        oc create -f files/project-template.yml -n default
+- hosts: masters
+  tasks:
+  - name: Setting default ProjectRequest on mater-config
+      replace:
+        path: /etc/origin/master/master-config.yaml
+        regexp: "projectRequestTemplate: ''"
+        replace: "projectRequestTemplate: 'default/project-request'"
+  - name: restart atomic-openshift-master-api atomic-openshift-master-controllers 
+    shell: |
+      systemctl restart atomic-openshift-master-api atomic-openshift-master-controllers

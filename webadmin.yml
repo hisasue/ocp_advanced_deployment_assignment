@@ -1,0 +1,20 @@
+- hosts: masters
+  become: true
+  tasks:
+    - name: install httpd-tools
+      yum:
+        state: present
+        name: httpd-tools
+
+    - name: create user webadmin
+      shell: |
+        htpasswd -b /etc/origin/master/htpasswd "{{ item }}" r3dh4t1!
+      with_items:
+        - webadmin
+- hosts: 127.0.0.1
+  tasks:
+    - name: add cluster role to 'webadmin' clusster-admin
+      shell: |
+        oc adm policy add-cluster-role-to-user cluster-admin webadmin
+
+

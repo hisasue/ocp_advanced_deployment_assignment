@@ -26,9 +26,9 @@ openshift_master_api_port=443
 openshift_master_console_port=443
 
 openshift_master_cluster_method=native
-openshift_master_cluster_hostname=loadbalancer1.fd64.internal
-openshift_master_cluster_public_hostname=loadbalancer.fd64.example.opentlc.com
-openshift_master_default_subdomain=apps.fd64.example.opentlc.com
+openshift_master_cluster_hostname=loadbalancer1.%GUID%.internal
+openshift_master_cluster_public_hostname=loadbalancer.%GUID%.example.opentlc.com
+openshift_master_default_subdomain=apps.%GUID%.example.opentlc.com
 #openshift_master_ca_certificate={'certfile': '/root/intermediate_ca.crt', 'keyfile': '/root/intermediate_ca.key'}
 openshift_master_overwrite_named_certificates=True
 
@@ -128,7 +128,7 @@ openshift_logging_storage_volume_name=logging
 openshift_logging_storage_volume_size=10Gi
 openshift_logging_storage_labels={'storage': 'logging'}
 
-# openshift_logging_kibana_hostname=kibana.apps.fd64.example.opentlc.com
+# openshift_logging_kibana_hostname=kibana.apps.%GUID%.example.opentlc.com
 openshift_logging_es_cluster_size=1
 
 openshift_logging_es_nodeselector={"env":"infra"}
@@ -187,42 +187,42 @@ nfs
 #glusterfs
 
 [lb]
-"loadbalancer1.fd64.internal"
+"loadbalancer1.%GUID%.internal"
 
 [masters]
-"master1.fd64.internal"
-"master2.fd64.internal"
-"master3.fd64.internal"
+"master1.%GUID%.internal"
+"master2.%GUID%.internal"
+"master3.%GUID%.internal"
 
 [etcd]
-"master1.fd64.internal"
-"master2.fd64.internal"
-"master3.fd64.internal"
+"master1.%GUID%.internal"
+"master2.%GUID%.internal"
+"master3.%GUID%.internal"
 
 [nodes]
 ## These are the masters
-"master1.fd64.internal" openshift_hostname="master1.fd64.internal" openshift_node_labels="{'env':'master', 'cluster': 'fd64'}"
-"master2.fd64.internal" openshift_hostname="master2.fd64.internal" openshift_node_labels="{'env':'master', 'cluster': 'fd64'}"
-"master3.fd64.internal" openshift_hostname="master3.fd64.internal" openshift_node_labels="{'env':'master', 'cluster': 'fd64'}"
+"master1.%GUID%.internal" openshift_hostname="master1.%GUID%.internal" openshift_node_labels="{'env':'master', 'cluster': '%GUID%'}"
+"master2.%GUID%.internal" openshift_hostname="master2.%GUID%.internal" openshift_node_labels="{'env':'master', 'cluster': '%GUID%'}"
+"master3.%GUID%.internal" openshift_hostname="master3.%GUID%.internal" openshift_node_labels="{'env':'master', 'cluster': '%GUID%'}"
 
 ## These are infranodes
-"infranode1.fd64.internal" openshift_hostname="infranode1.fd64.internal"  openshift_node_labels="{'env':'infra', 'cluster': 'fd64'}"
-"infranode2.fd64.internal" openshift_hostname="infranode2.fd64.internal"  openshift_node_labels="{'env':'infra', 'cluster': 'fd64'}"
+"infranode1.%GUID%.internal" openshift_hostname="infranode1.%GUID%.internal"  openshift_node_labels="{'env':'infra', 'cluster': '%GUID%'}"
+"infranode2.%GUID%.internal" openshift_hostname="infranode2.%GUID%.internal"  openshift_node_labels="{'env':'infra', 'cluster': '%GUID%'}"
 
 ## These are regular nodes
-"node1.fd64.internal" openshift_hostname="node1.fd64.internal"  openshift_node_labels="{'env':'app', 'cluster': 'fd64'}"
-"node2.fd64.internal" openshift_hostname="node2.fd64.internal"  openshift_node_labels="{'env':'app', 'cluster': 'fd64'}"
-"node3.fd64.internal" openshift_hostname="node3.fd64.internal"  openshift_node_labels="{'env':'app', 'cluster': 'fd64'}"
+"node1.%GUID%.internal" openshift_hostname="node1.%GUID%.internal"  openshift_node_labels="{'env':'app', 'cluster': '%GUID%'}"
+"node2.%GUID%.internal" openshift_hostname="node2.%GUID%.internal"  openshift_node_labels="{'env':'app', 'cluster': '%GUID%'}"
+"node3.%GUID%.internal" openshift_hostname="node3.%GUID%.internal"  openshift_node_labels="{'env':'app', 'cluster': '%GUID%'}"
 
 ## These are CNS nodes
-# "support1.fd64.internal" openshift_hostname="support1.fd64.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': 'fd64'}"
-# "support2.fd64.internal" openshift_hostname="support2.fd64.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': 'fd64'}"
-# "support3.fd64.internal" openshift_hostname="support3.fd64.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': 'fd64'}"
+# "support1.%GUID%.internal" openshift_hostname="support1.%GUID%.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': '%GUID%'}"
+# "support2.%GUID%.internal" openshift_hostname="support2.%GUID%.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': '%GUID%'}"
+# "support3.%GUID%.internal" openshift_hostname="support3.%GUID%.internal"  openshift_node_labels="{'env':'glusterfs', 'cluster': '%GUID%'}"
 
 [nfs]
-support1.fd64.internal openshift_hostname=support1.fd64.internal
+support1.%GUID%.internal openshift_hostname=support1.%GUID%.internal
 
 #[glusterfs]
-# support1.fd64.internal glusterfs_devices='[ "/dev/xvdd" ]'
-# support2.fd64.internal glusterfs_devices='[ "/dev/xvdd" ]'
-# support3.fd64.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support1.%GUID%.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support2.%GUID%.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support3.%GUID%.internal glusterfs_devices='[ "/dev/xvdd" ]'
