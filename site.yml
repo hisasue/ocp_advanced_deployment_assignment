@@ -6,4 +6,5 @@
 - import_playbook: cicd.yml
 - import_playbook: hpa.yml
 - import_playbook: multitenancy.yml
+- import_playbook: webadmin.yml
 
