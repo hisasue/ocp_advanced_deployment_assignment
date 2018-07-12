@@ -1,0 +1,35 @@
+#!/bin/bash
+
+usage_exit() {
+  echo "Usage: $0 [-y]" 1>&2
+  exit 1
+}
+
+continue_prompt(){
+  if [ $YES -ne 1 ] ; then
+    read -p "continue? (Y/n): " yn
+    case "$yn" in [nN]*) exit;; *) ;; esac
+  fi
+}
+
+YES=0
+
+while getopts y OPT
+do
+    case $OPT in
+        "y")  YES=1
+            ;;
+        \?) usage_exit
+            ;;
+    esac
+done
+
+ansible-playbook local.yml
+continue_prompt
+ansible-playbook -i hosts pre.yml
+continue_prompt
+ansible-playbook -f 20 -i hosts /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
+continue_prompt
+ansible-playbook -f 20 -i hosts /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+continue_prompt
+ansible-playbook -i hosts site.yml

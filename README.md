@@ -33,16 +33,16 @@ ansible -i hosts nodes -m shell -a"systemctl status docker | grep Active"
 ## Create Basic and HA OpenShift Environment
 
 As the root user on bastion, run the following commands to create basic and HA OpenShift environment.
-The __setup.sh__ creates basic and HA OpenShift environment, deploys smoke test project, CI/CD pipeline project, HPA project, configures multitenancy with some users.
+The __setup__ script creates basic and HA OpenShift environment, deploys smoke test project, CI/CD pipeline project, HPA project, configures multitenancy with some users.
 
 ```shell
 git clone https://github.com/hisasue/ocp_advanced_deployment_assignment.git
 
 cd ocp_advanced_deployment_assignment
 
-chmod u+x setup.sh
+chmod u+x setup
 
-./setup.sh
+./setup # or you can run with option -y './setup -h' if you do not need to confirm at each step.
 ```
 
 ## Basic and HA Requirements, Environment Configuration
@@ -79,7 +79,7 @@ oc delete project smoke-test
 
 ### CI/CD Pipeline
 
-* In this section setup.sh:
+* In this section setup script:
   * Creates a project (pipeline-project)
   * Creates Jenkins (persistent) pod and run a sample app(sample-pipeline) which has build pipeline.
   * Starts the pipeine
@@ -106,7 +106,7 @@ oc delete project pipeline-project
 
 ### HPA
 
-* In this section setup.sh:
+* In this section setup script:
   * Creates a project (hpa-project)
   * Sets a LimitRange
   * Creates an HPA scaling from 1 pod minimum to 5 pod maximum up when the CPU utilization equal or greater than 80%
@@ -123,7 +123,7 @@ oc delete project hpa-project
 
 ## Multitenancy
 
-* In this section setup.sh:
+* In this section setup script:
   * Creates users Amy, Andrew, Brian and Betty
   * Labels Amy and Andrew client=alfa
   * Labels Brian and Betty client=beta
