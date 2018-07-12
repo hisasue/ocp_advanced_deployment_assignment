@@ -42,7 +42,7 @@ cd ocp_advanced_deployment_assignment
 
 chmod u+x setup
 
-./setup # or you can run with option -y './setup -h' if you do not need to confirm at each step.
+./setup # or you can run with option -y './setup -y' if you do not need to confirm at each step.
 ```
 
 ## Basic and HA Requirements, Environment Configuration
