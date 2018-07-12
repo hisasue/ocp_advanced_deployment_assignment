@@ -11,7 +11,7 @@ This homework lab is done on the premise that it has an environment described as
 * 3 master nodes
   * master[1:3].$GUID.internal
 * 1 loadbalancer node
-  * loadbalancer1.$GUID.internal
+  * loadbalancer.$GUID.example.opentlc.com, loadbalancer1.$GUID.internal
 * 2 infranodes
   * infranode[1:2].$GUID.internal
 * 3 worker nodes
@@ -30,18 +30,22 @@ This homework lab is done on the premise that it has an environment described as
 ansible -i hosts nodes -m shell -a"systemctl status docker | grep Active"
 ```
 
-## Basic and HA Requirements, Environment Configuration
+## Create Basic and HA OpenShift Environment
 
-As the root user on bastion, run the following commands to create OpenShift HA environment.
+As the root user on bastion, run the following commands to create basic and HA OpenShift environment.
+The __setup.sh__ creates basic and HA OpenShift environment, deploys smoke test project, CI/CD pipeline project, HPA project, configures multitenancy with some users.
 
 ```shell
 git clone https://github.com/hisasue/ocp_advanced_deployment_assignment.git
+
 cd ocp_advanced_deployment_assignment
 
-chmod u+x do.sh
+chmod u+x setup.sh
 
-./do.sh
+./setup.sh
 ```
+
+## Basic and HA Requirements, Environment Configuration
 
 * In this environment:
   * Three masters are working
@@ -51,7 +55,7 @@ chmod u+x do.sh
   * Router is configured on each infranode
   * PVs of 5Gi, ReadWriteOnce and 10Gi ReadWriteMany are available on support node
   * A load balancer to access the masters called loadbalancer.$GUID.$DOMAIN
-  * There is a load balancer/DNS for both infranodes called *.apps.$GUID.$DOMAIN
+  * There is a load balancer/DNS for both infranodes called \*.apps.$GUID.$DOMAIN
   * Two infranodes, labeled env=infra
   * Ability to deploy a simple app (nodejs-mongo-persistent)
   * Multitenancy is enabled
@@ -75,9 +79,9 @@ oc delete project smoke-test
 
 ### CI/CD Pipeline
 
-* In this section the script:
+* In this section setup.sh:
   * Creates a project (pipeline-project)
-  * Creates Jenkins (persistent) Pod and run a sample app(sample-pipeline) which has build pipeline.
+  * Creates Jenkins (persistent) pod and run a sample app(sample-pipeline) which has build pipeline.
   * Starts the pipeine
 
 You can see pipeline on the web console or the Jenkins console.
@@ -100,9 +104,9 @@ If you need to delete the project, run the command below.
 oc delete project pipeline-project
 ```
 
-## HPA is configured and working on production deployment
+### HPA
 
-* In this section the script:
+* In this section setup.sh:
   * Creates a project (hpa-project)
   * Sets a LimitRange
   * Creates an HPA scaling from 1 pod minimum to 5 pod maximum up when the CPU utilization equal or greater than 80%
@@ -119,7 +123,7 @@ oc delete project hpa-project
 
 ## Multitenancy
 
-* In this section the script:
+* In this section setup.sh:
   * Creates users Amy, Andrew, Brian and Betty
   * Labels Amy and Andrew client=alfa
   * Labels Brian and Betty client=beta

@@ -1,12 +1,12 @@
 - hosts: all
   tasks:
     - name: export GUID
-      shell: bash -lc 'export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc'
+      shell: /bin/bash -lc 'export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc'
 
 - hosts: nfs
   tasks:
     - name: exportfs
-      shell: bash -lc 'exportfs'
+      shell: /bin/bash -lc 'exportfs'
 
 - hosts: 127.0.0.1
   tasks:
